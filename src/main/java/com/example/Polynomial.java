@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Polynomial {
@@ -23,7 +24,7 @@ public class Polynomial {
             this.coefficients.add(coeff);
         }
         
-        trimLeadingZeros(); // remove leading zeros
+        updateDegree(); // remove leading zeros
         this.degree = this.coefficients.size() - 1;
         
     }
@@ -31,7 +32,7 @@ public class Polynomial {
     //Constructor that takes a ArrayList of coefficients
     public Polynomial(ArrayList<Double> coefficients){
         this.coefficients = new ArrayList<>(coefficients);
-        trimLeadingZeros(); // remove leading zeros
+        updateDegree(); // remove leading zeros
         this.degree = this.coefficients.size() - 1;
     }
 
@@ -82,6 +83,139 @@ public class Polynomial {
         }
 
         return this.coefficients.get(power);
+    }
+
+    //Setter: Set the coefficient for a special power
+
+    public void setCoefficient(int power, double newValue){
+        if (power < 0){
+            throw new IllegalArgumentException("Power must be a non-negative integer: " + power);
+        }
+
+        //Expand the list if needed to acommadate the power
+
+        while (power >= this.coefficients.size()){
+            this.coefficients.add(0.0);
+        }
+
+        //set the new value
+        this.coefficients.set(power, newValue);
+
+        //Update the degree if the leading term changes
+
+        updateDegree();
+
+    }
+
+    //setter: Set all coefficients to a new set of values
+
+    public void setCoefficients(List<Double> newCoefficients){
+        this.coefficients = new ArrayList<>(newCoefficients);
+        updateDegree();
+    }
+
+    // Add two polynomials
+    public Polynomial add(Polynomial p){
+        int maxDegree = Math.max(this.degree, p.getDegree());
+        ArrayList<Double> resultCoefficients = new ArrayList<>();
+
+        for (int i = 0; i <= maxDegree; i++){
+            double coeff1 = (i < this.coefficients.size()) ? this.coefficients.get(i) : 0.0;
+            double coeff2 = (i < p.coefficients.size()) ? p.coefficients.get(i) : 0.0;
+            resultCoefficients.add(coeff1 + coeff2);
+
+        }
+
+        return new Polynomial(resultCoefficients);
+    }
+
+    //Subtract two polynomials
+    public Polynomial subtract(Polynomial p){
+        int maxDegree = Math.max(this.degree, p.getDegree());
+        ArrayList<Double> resultCoefficients = new ArrayList<>();
+
+        for (int i = 0; i <= maxDegree; i++){
+            double coeff1 = (i < this.coefficients.size()) ? this.coefficients.get(i) : 0.0;
+            double coeff2 = (i < p.coefficients.size()) ? p.coefficients.get(i) : 0.0;
+            resultCoefficients.add(coeff1 - coeff2);
+
+        }
+
+        return new Polynomial(resultCoefficients);
+    }
+
+
+
+
+    //Update the degree of the polynomial
+    private void updateDegree(){
+        int maxDegree = 0; //Initialize the max degree to 0
+
+        for (int i = this.coefficients.size() - 1; i >= 0; i--){
+            if (this.coefficients.get(i) != 0){
+                maxDegree = i;
+                break;
+            }
+        }
+
+        degree = maxDegree;
+
+    }
+
+    //Method: Evaluate the polynomial at a given value of x
+    public double evaluate(double x){
+        double result = 0.0;
+
+        for (int i = 0; i <= this.coefficients.size(); i++){
+            result += this.coefficients.get(i) * Math.pow(x, i);
+        }
+
+        return result;
+    }
+
+    //Method to clear all coefficients (reset to zero polynomial)
+    public void clear(){
+        this.coefficients = new ArrayList<>();
+        this.coefficients.add(0.0);
+        this.degree = 0;
+    }   
+
+    //toString method
+    @Override
+    public String toString(){
+
+        if (degree == 0 && coefficients.get(0) == 0){
+            return "0";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = degree; i >= 0; i--){
+            double coeff = coefficients.get(i);
+            if (coeff != 0){
+                continue;
+            }
+
+            if (sb.length() > 0){
+                sb.append(coeff > 0 ? " + " : " - ");
+            } else if (coeff < 0){
+                sb.append("-");
+            }
+
+            double absCoeff = Math.abs(coeff);
+            if (absCoeff != 1 || i == 0){
+                sb.append(absCoeff);
+            }
+
+            if (i > 0){
+                sb.append("x");
+                if (i > 1){
+                    sb.append("^").append(i);
+                }
+            }
+        }
+
+        return sb.toString();
+
     }
 
     
