@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Polynomial {
+public class Polynomial implements Comparable<Polynomial> {
 
     private ArrayList<Double> coefficients;
     private int degree;
@@ -47,12 +47,15 @@ public class Polynomial {
         for (int i = 0; i <= degree; i++){
             // generate a double value name coeff that makes a number between -15 and 15
             double coeff = random.nextDouble() * 30 - 15;
+            coeff = Math.round(coeff * 10) / 10.0; // round to one decimal place
             this.coefficients.add(coeff);
         }
 
         //Leading coefficient should not be non-zero
         if (this.coefficients.get(degree) == 0){
-            this.coefficients.set(degree, random.nextDouble() * 14 + 1);
+            double newCoeff = random.nextDouble() * 14 + 1;
+            newCoeff = Math.round(newCoeff * 10) / 10.0;
+            this.coefficients.set(degree, newCoeff);
         }
 
         this.degree = degree;
@@ -166,7 +169,7 @@ public class Polynomial {
     public double evaluate(double x){
         double result = 0.0;
 
-        for (int i = 0; i <= this.coefficients.size(); i++){
+        for (int i = 0; i < this.coefficients.size(); i++){
             result += this.coefficients.get(i) * Math.pow(x, i);
         }
 
@@ -191,7 +194,7 @@ public class Polynomial {
         StringBuilder sb = new StringBuilder();
         for (int i = degree; i >= 0; i--){
             double coeff = coefficients.get(i);
-            if (coeff != 0){
+            if (coeff == 0){ //skip zero coefficients
                 continue;
             }
 
@@ -218,16 +221,47 @@ public class Polynomial {
 
     }
 
-    
+    @Override
+    public int compareTo(Polynomial otherPolynomial) {
+        //Case 1: Check if all coefficients are the same
 
+        if (this.coefficients.equals(otherPolynomial.coefficients)){
+            return 0; //The polynomials are equal
+        }
 
+        //Case 2: Compare degrees
 
+        if (this.degree > otherPolynomial.degree){
+            return 1; //Current polynomial has a higher degree
+        } else if (this.degree < otherPolynomial.degree){
+            return -1; //Current polynomial has a lower degree
+        }
 
+        //Case 3: Degree are the same, compare evaluations at x = 1 and x = -1
 
+        double thisValueAt1 = this.evaluate(1.0);
+        double otherValueAt1 = otherPolynomial.evaluate(1.0);
 
+        if (thisValueAt1 > otherValueAt1){
+            return 1; //Current polynomial has a higher value at x = 1
+        } else if (thisValueAt1 < otherValueAt1){
+            return -1; //Current polynomial has a lower value at x = 1
+        }
 
+        double thisValueAtMinus1 = this.evaluate(-1.0);
+        double otherValueAtMinus1 = otherPolynomial.evaluate(-1.0);
 
+        if (thisValueAtMinus1 > otherValueAtMinus1){
+            return 1; //Current polynomial has a higher value at x = -1
+        } else if (thisValueAtMinus1 < otherValueAtMinus1){
+            return -1; //Current polynomial has a lower value at x = -1
+        }
 
+        // If else fails, (which should not happen) return 0
+
+        return 0;
+   
+    }
 
 
 
