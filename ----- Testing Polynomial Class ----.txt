@@ -1,0 +1,73 @@
+----- Testing Polynomial Class -----
+Test 1: Empty Constructor
+Empty Polynomial p1 = 0
+
+Test 2: Constructor with Coefficients (ArrayList)
+Polynomial made with an ArrayList p2 = 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+
+Test 3: Constructor with int array
+Polynomial made with an array p3 = 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+
+Test 4: Random polynomial base on degree input
+Polynomial made with inputting a degree p4 = -7.2x^4 - 4.3x^3 - 14.1x^2 - 5.5x - 6.7
+
+Test 5: Getters
+The polynomial p2 is: 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+Degree of p2:3
+Coefficient of p2: [1.0, 2.0, 3.0, 4.0]
+Coefficient of x^2 in p2: 3.0
+
+Test 6: Setters
+The original polynomial p2 is: 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+p2 after changing coefficient of x^2 to 5: 4.0x^3 + 5.0x^2 + 2.0x + 1.0
+p2 after changing all coefficients: 5.0x^4 + 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+
+Test 7: Clear Method
+p2 before clear: 5.0x^4 + 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+p2 after clear: 0
+
+Test 8: Evaluate Method
+p2 = 5.0x^4 + 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+Value of p2 at x = 2.0 is 129.0
+
+Test 9: Addition and Subtraction
+Polynomial p5 = 11.0x^4 + 10.0x^3 + 9.0x^2 + 8.0x + 7.0
+Polynomial p2 = 5.0x^4 + 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+p5 + p2 = 16.0x^4 + 14.0x^3 + 12.0x^2 + 10.0x + 8.0
+p5 - p2 = 6.0x^4 + 6.0x^3 + 6.0x^2 + 6.0x + 6.0
+
+Test 10: CompareTo Method
+Polynomial p5 = 11.0x^4 + 10.0x^3 + 9.0x^2 + 8.0x + 7.0
+Polynomial p2 = 5.0x^4 + 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+Comparing p2 and p5: -1
+Comparing p5 and p2: 1
+Polynomial p6 = 5.0x^4 + 4.0x^3 + 3.0x^2 + 2.0x + 1.0
+Comparing p2 and p6: 0
+
+Test 11: List of Random Sorted Polynomials
+
+List of unsorted polynomials:
+
+7.8x^8 - 12.0x^7 + 14.7x^6 - 12.2x^5 + 4.0x^4 + 10.3x^3 + 3.3x^2 - 10.0x + 6.2
+
+-2.8x^11 - 4.2x^10 - x^9 - 1.6x^8 + 2.6x^7 - 1.4x^6 + 11.4x^5 + 7.8x^4 + 11.1x^3 - 0.5x^2 - 2.9x - 7.9
+
+-5.9x^15 + 1.1x^14 - 14.9x^13 - 9.0x^12 - 13.9x^11 - 3.7x^10 + 9.4x^9 - 7.7x^8 + 13.6x^7 + 11.3x^6 + 3.4x^5 + 0.4x^4 + 5.0x^3 - 8.5x^2 + 10.8x + 6.1
+
+-12.0x^12 + 12.1x^11 - 5.3x^10 - 15.0x^9 - 3.0x^8 + 6.4x^7 + 13.3x^6 + 10.2x^5 - 12.8x^4 + 10.4x^3 + 3.0x^2 - 5.6x + 1.2
+
+3.7x^13 - 9.7x^12 - 0.6x^11 + 2.0x^10 + 3.3x^9 - 6.1x^8 + 2.2x^7 - 4.0x^6 - 2.0x^5 - 7.8x^4 + 2.0x^3 + 11.8x^2 - 12.1x - 10.5
+
+List of sorted polynomials:
+
+7.8x^8 - 12.0x^7 + 14.7x^6 - 12.2x^5 + 4.0x^4 + 10.3x^3 + 3.3x^2 - 10.0x + 6.2
+
+-2.8x^11 - 4.2x^10 - x^9 - 1.6x^8 + 2.6x^7 - 1.4x^6 + 11.4x^5 + 7.8x^4 + 11.1x^3 - 0.5x^2 - 2.9x - 7.9
+
+-12.0x^12 + 12.1x^11 - 5.3x^10 - 15.0x^9 - 3.0x^8 + 6.4x^7 + 13.3x^6 + 10.2x^5 - 12.8x^4 + 10.4x^3 + 3.0x^2 - 5.6x + 1.2
+
+3.7x^13 - 9.7x^12 - 0.6x^11 + 2.0x^10 + 3.3x^9 - 6.1x^8 + 2.2x^7 - 4.0x^6 - 2.0x^5 - 7.8x^4 + 2.0x^3 + 11.8x^2 - 12.1x - 10.5
+
+-5.9x^15 + 1.1x^14 - 14.9x^13 - 9.0x^12 - 13.9x^11 - 3.7x^10 + 9.4x^9 - 7.7x^8 + 13.6x^7 + 11.3x^6 + 3.4x^5 + 0.4x^4 + 5.0x^3 - 8.5x^2 + 10.8x + 6.1
+
+----- End of Testing Polynomial Class -----
