@@ -1,0 +1,1 @@
+cmd.exe /X /D /C "c:\Users\alexp\.vscode\extensions\redhat.java-1.39.0-win32-x64\jre\21.0.5-win32-x86_64\bin\javadoc.exe -J-Duser.language= -J-Duser.country= @options @packages"

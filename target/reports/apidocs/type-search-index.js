@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.example","l":"Polynomial"},{"p":"com.example","l":"PolynomialDriver"}];updateSearchResults();
