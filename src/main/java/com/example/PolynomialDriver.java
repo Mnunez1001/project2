@@ -140,6 +140,9 @@ public class PolynomialDriver {
         System.out.println("\n----- End of Testing Polynomial Class -----");
 
 
+
+
+
         //Test 12: Random Polynomial Constructor Project 3
 
         System.out.println("\n----- Testing Random Polynomial Constructor Project 3 -----");
@@ -254,25 +257,25 @@ public class PolynomialDriver {
             long startSequentialFound = System.nanoTime();
             int sequentialIndexFound = sequentialSearch(testArray, foundPolynomial);
             long endSequentialFound = System.nanoTime();
-            System.out.println("Sequential Search (found): " + (endSequentialFound - startSequentialFound) + " ns");
+            System.out.println("Sequential Search (found): " + (endSequentialFound - startSequentialFound) + " ns, Index: " + sequentialIndexFound);
 
             // Sequential search (not found)
             long startSequentialNotFound = System.nanoTime();
             int sequentialIndexNotFound = sequentialSearch(testArray, notFoundPolynomial);
             long endSequentialNotFound = System.nanoTime();
-            System.out.println("Sequential Search (not found): " + (endSequentialNotFound - startSequentialNotFound) + " ns");
+            System.out.println("Sequential Search (not found): " + (endSequentialNotFound - startSequentialNotFound) + " ns, Index: " + sequentialIndexNotFound);
 
             // Binary search (existing)
             long startBinaryFound = System.nanoTime();
             int binaryIndexFound = binarySearch(testArray, foundPolynomial);
             long endBinaryFound = System.nanoTime();
-            System.out.println("Binary Search (found): " + (endBinaryFound - startBinaryFound) + " ns");
+            System.out.println("Binary Search (found): " + (endBinaryFound - startBinaryFound) + " ns, Index: " + binaryIndexFound);
 
             // Binary search (not found)
             long startBinaryNotFound = System.nanoTime();
             int binaryIndexNotFound = binarySearch(testArray, notFoundPolynomial);
             long endBinaryNotFound = System.nanoTime();
-            System.out.println("Binary Search (not found): " + (endBinaryNotFound - startBinaryNotFound) + " ns");
+            System.out.println("Binary Search (not found): " + (endBinaryNotFound - startBinaryNotFound) + " ns, Index: " + binaryIndexNotFound);
         }
 
 
